@@ -16,7 +16,6 @@ const Fac_resolvers = {
   		generalRequest(`${URL}/${id_factura}`, 'PUT', factura),
 		deleteFactura: (_, { id_factura }) =>
 			generalRequest(`${URL}/${id_factura}`, 'DELETE')
-    //pendiente actualizar factura por campos especificos
 	}
 };
 

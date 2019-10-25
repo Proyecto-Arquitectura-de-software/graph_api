@@ -1,25 +1,45 @@
-import express from 'express';
+import Koa from 'koa';
+import KoaRouter from 'koa-router';
+import koaLogger from 'koa-logger';
+import koaBody from 'koa-bodyparser';
+import koaCors from '@koa/cors';
 
-const app = express();
+import { graphiqlKoa, graphqlKoa } from 'apollo-server-koa';
+import graphQLSchema from './graphQLSchema';
 
+import { formatErr } from './utilities';
 
-import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
-import { makeExecutableSchema } from 'graphql-tools';
-import typeDefs from './schema';
-import resolvers from './resolvers';
+const app = new Koa();
+const router = new KoaRouter();
+const PORT = process.env.PORT || 5000;
 
-//routes
+app.use(koaLogger());
+app.use(koaCors());
 
+// read token from header
+app.use(async (ctx, next) => {
+	if (ctx.header.authorization) {
+		const token = ctx.header.authorization.match(/Bearer ([A-Za-z0-9]+)/);
+		if (token && token[1]) {
+			ctx.state.token = token[1];
+		}
+	}
+	await next();
+});
 
+// GraphQL
+const graphql = graphqlKoa((ctx) => ({
+	schema: graphQLSchema,
+	context: { token: ctx.state.token },
+	formatError: formatErr
+}));
+router.post('/graphql', koaBody(), graphql);
+router.get('/graphql', graphql);
 
-const schema = makeExecutableSchema({
-	typeDefs,
-	resolvers
-})
+// test route
+router.get('/graphiql', graphiqlKoa({ endpointURL: '/graphql' }));
 
-app.use('/graphql',	express.json(), graphqlExpress({
- 	schema
-}))
-
-
-app.listen(3000,()=>{console.log("listen on port 3000")})
+app.use(router.routes());
+app.use(router.allowedMethods());
+// eslint-disable-next-line
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
