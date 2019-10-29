@@ -7,9 +7,9 @@ const URL = `http://${url}:${port}/${entryPoint}`;
 const Pub_resolvers = {
 	Query: {
 		getAllPublicaciones: (_) =>
-			generalRequest(URL, ''),
+			getRequest(URL, ''),
     getOnePublicacion: (_, { publicationID }) =>
-			generalRequest(`${URL}/${publicationID}`, ''),
+			generalRequest(`${URL}/${publicationID}`, 'GET'),
 	},
 	Mutation: {
 		createPublicacion: (_, { publicacion }) =>

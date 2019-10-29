@@ -22,6 +22,6 @@ export const pedidoQueries = `
 
 export const pedidoMutations = `
     createPedido(pedido: PedidoInput!): Pedido!
-    updatePedido(id: Int!, pedido: PedidoInput!): Pedido!
-    deletePedido(id: Int!): Int
+    updatePedido(id_pedido: Int!, pedido: PedidoInput!): Pedido!
+    deletePedido(id_pedido: Int!): Int
 `;

@@ -7,7 +7,7 @@ const URL = `http://${url}:${port}/`;
 const Men_resolvers = {
 	Query: {
 		getAllMensajes: (_, { id_cliente, id_establecimiento }) =>
-			generalRequest(`${URL}/conversacion/${id_cliente}/${id_establecimiento}`, ''),
+			getRequest(`${URL}/conversacion/${id_cliente}/${id_establecimiento}`, ''),
 	},
 	Mutation: {
 		createMensaje: (_, { msg }) =>

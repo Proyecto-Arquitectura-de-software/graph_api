@@ -7,17 +7,17 @@ const URL = `http://${url}:${port}/${entryPoint}`;
 const Ped_resolvers = {
 	Query: {
 		getAllPedidos: (_) =>
-			generalRequest(URL, ''),
-    getOnePedido: (_, { id }) =>
-			generalRequest(`${URL}/${id}`, ''),
+			getRequest(URL, ''),
+    getOnePedido: (_, { id_pedido }) =>
+			generalRequest(`${URL}/${id_pedido}`, 'GET'),
 	},
 	Mutation: {
 		createPedido: (_, { pedido }) =>
 			generalRequest(`${URL}`, 'POST', pedido),
-    updatePedido: (_, { id, pedido }) =>
-  		generalRequest(`${URL}/${id}`, 'PUT', pedido),
-		deletePedido: (_, { id }) =>
-			generalRequest(`${URL}/${id}`, 'DELETE')
+    updatePedido: (_, { id_pedido, pedido }) =>
+  		generalRequest(`${URL}/${id_pedido}`, 'PUT', pedido),
+		deletePedido: (_, { id_pedido }) =>
+			generalRequest(`${URL}/${id_pedido}`, 'DELETE')
 	}
 };
 

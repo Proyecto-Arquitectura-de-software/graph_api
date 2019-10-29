@@ -7,7 +7,7 @@ const URL = `http://${url}:${port}/${entryPoint}`;
 const Fac_resolvers = {
 	Query: {
 		getAllFacturas: (_) =>
-			generalRequest(URL, ''),
+			getRequest(URL, ''),
 	},
 	Mutation: {
 		createFactura: (_, { factura }) =>
