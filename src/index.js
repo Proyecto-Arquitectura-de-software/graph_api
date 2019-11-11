@@ -4,9 +4,14 @@ const ApolloServer = require('apollo-server-express').ApolloServer;
 const typeDefs = require('./schema');
 const resolvers = require('./resolvers');
 
+let a = 0;
+
 const server = new ApolloServer({
 	typeDefs,
-	resolvers
+	resolvers,
+	context: async ({req})=>{
+		return {token: req.token};
+	}
 });
 
 server.applyMiddleware({ app });

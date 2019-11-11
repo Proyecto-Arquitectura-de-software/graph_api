@@ -1,7 +1,10 @@
 const resolversArray = [
     require('./billing/resolvers'),
     require('./clients/resolvers'),
-    require('./establishments/resolvers')
+    require('./establishments/resolvers'),
+    require('./publications/resolvers'),
+    require('./orders/resolvers'),
+    require('./messaging/resolvers')
 ];
 
 const resolvers = {"Query" : {}, "Mutation" : {}};
