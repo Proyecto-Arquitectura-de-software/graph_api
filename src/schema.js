@@ -6,7 +6,8 @@ let schemasArray = [
     require('./establishments/schema'),
     require('./publications/schema'),
     require('./orders/schema'),
-    require('./messaging/schema')
+    require('./messaging/schema'),
+    require('./login/schema')
 ];
 let schemas = "";
 let queries = "";

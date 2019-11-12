@@ -5,10 +5,12 @@ module.exports.queries = {
 		const res = await fetch(`http://34.69.25.250:3001/establishments/${id}`);
 		return res.json();
 	},
-	getEstablishments: async (parent,params)=>{
-		let req = "?";
-		for(let n in params){
-			req += `${n}=${params[n]}&`;
+	getEstablishments: async (parent,{coordinateX,coordinateY,filters})=>{
+		let req = `?coordinateX=${coordinateX}&coordinateY=${coordinateY}&`;
+		if(filters){
+			for(let e of filters){
+				req += `${e.name}=${e.value}&`;
+			}
 		}
 		const res = await fetch(`http://34.69.25.250:3001/establishments${req.substring(0,req.length-1)}`);
 		return res.json();

@@ -12,6 +12,11 @@ input EstablishmentReviewInput{
     posterId : String!
 }
 
+input EstablishmentsFilters{
+    name: String!
+    value: String!
+}
+
 type Establishment{
     _id: String!
     coordinateX: Float!
@@ -22,6 +27,7 @@ type Establishment{
     deliveryCost : Int
     paymentMethods : [String]
     type : String
+    score: Int
     categories : [String]
     messages : [EstablishmentReview]
 }
@@ -53,7 +59,7 @@ input EstablishmentUpdateInput{
 
 module.exports.queries = `
     getEstablishment(id: String!): Establishment!
-    getEstablishments(coordinateX: Float, coordinateY: Float, filters: [String]): [Establishment]!
+    getEstablishments(coordinateX: Float, coordinateY: Float, filters: [EstablishmentsFilters]): [Establishment]!
 `
 
 module.exports.mutations = `
