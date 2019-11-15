@@ -28,6 +28,7 @@ input ProductUpdateInput{
 
 module.exports.queries = `
     getProducts: [Product]
+    getProductsByEstablishment(id: String!): [Product]
 `
 
 module.exports.mutations = `

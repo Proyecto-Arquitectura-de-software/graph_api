@@ -7,6 +7,7 @@ module.exports.schemas= `
 
 module.exports.queries = `
     login(credentials: LoginCredentials!): String!
+    loginEstablishment(credentials: LoginCredentials!): String!
 `
 
 module.exports.mutations = ``

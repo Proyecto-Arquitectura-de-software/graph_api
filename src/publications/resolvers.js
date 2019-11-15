@@ -4,6 +4,10 @@ module.exports.queries = {
 	getProducts: async (parent)=>{
 		const res = await fetch(`http://34.69.25.250:3000/products`);
 		return res.json();
+	},
+	getProductsByEstablishment: async (parent,{id})=>{
+		const res = await fetch(`http://34.69.25.250:3000/products/${id}`);
+		return res.json();
 	}
 };
 

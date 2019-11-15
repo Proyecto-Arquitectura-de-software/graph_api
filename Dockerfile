@@ -10,4 +10,4 @@ COPY . .
 EXPOSE 3002
 
 RUN npm install pm2 -g
-CMD ["pm2-runtime", "server.js"]
+CMD ["pm2-runtime", "src"]

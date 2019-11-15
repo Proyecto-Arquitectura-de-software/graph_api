@@ -12,10 +12,21 @@ module.exports.queries = {
         }else{
             const res = await fetch(`http://34.69.25.250:3001/clients?email=${credentials.username}`);
             let r = await res.json();
+            let token = jwt.sign({ id: r._id, name: r.name, lastname: r.lastname, exp: Math.floor(Date.now() / 1000) + (60 * 60) }, privateKey);
+            return token;
+        }
+    },
+    loginEstablishment: async(parent,{credentials})=>{
+        let verified = await verifyCredentials(credentials);
+        if(verified=="false"){
+            return "Wrong credentials";
+        }else{
+            const res = await fetch(`http://34.69.25.250:3001/establishment?email=${credentials.username}`);
+            let r = await res.json();
             let token = jwt.sign({ id: r._id, exp: Math.floor(Date.now() / 1000) + (60 * 60) }, privateKey);
             return token;
         }
-	}
+    }
 }
 
 module.exports.mutations = {}
