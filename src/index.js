@@ -2,8 +2,11 @@ const app = require('express')();
 
 const verifyToken = require('./security/token').verifyToken;
 const ApolloServer = require('apollo-server-express').ApolloServer;
+const cors = require('cors');
 const typeDefs = require('./schema');
 const resolvers = require('./resolvers');
+
+app.use(cors());
 
 app.use(verifyToken);
 
