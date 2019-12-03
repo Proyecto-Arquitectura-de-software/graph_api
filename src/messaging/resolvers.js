@@ -2,14 +2,14 @@ const fetch = require("node-fetch");
 
 module.exports.queries = {
 	getMessages: async (parent,{idClient,idEstablishment})=>{
-		const res = await fetch(`http://34.69.25.250:3200/conversacion/${idClient}/${idEstablishment}`);
+		const res = await fetch(`http://34.69.25.250:3201/conversacion/${idClient}/${idEstablishment}`);
 		return res.json();
 	}
 };
 
 module.exports.mutations = {
 	createMessage: async (parent,{message})=>{
-		const res = await fetch("http://34.69.25.250:3200/mensaje/",
+		const res = await fetch("http://34.69.25.250:3201/mensaje/",
 			{
 				headers: {
 				'Accept': 'application/json',
@@ -22,7 +22,7 @@ module.exports.mutations = {
 		return res.json();
 	},
 	deleteMessage: async (parent,{id})=>{
-		const res = await fetch(`http://34.69.25.250:3200/mensaje/${id}`,
+		const res = await fetch(`http://34.69.25.250:3201/mensaje/${id}`,
 			{
 				headers: {
 				'Accept': 'application/json',

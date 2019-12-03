@@ -2,7 +2,7 @@ const fetch = require("node-fetch");
 
 module.exports.queries = {
 	getEstablishment: async (parent,{id})=>{
-		const res = await fetch(`http://34.69.25.250:3001/establishments/${id}`);
+		const res = await fetch(`http://34.68.155.93:8004/establishments/${id}`);
 		return res.json();
 	},
 	getEstablishments: async (parent,{coordinateX,coordinateY,filters})=>{
@@ -12,14 +12,14 @@ module.exports.queries = {
 				req += `${e.name}=${e.value}&`;
 			}
 		}
-		const res = await fetch(`http://34.69.25.250:3001/establishments${req.substring(0,req.length-1)}`);
+		const res = await fetch(`http://34.68.155.93:8004/establishments${req.substring(0,req.length-1)}`);
 		return res.json();
 	}
 };
 
 module.exports.mutations = {
 	createEstablishment: async (parent,{establishment})=>{
-		const res = await fetch("http://34.69.25.250:3001/establishments/",
+		const res = await fetch("http://34.68.155.93:8004/establishments/",
 			{
 				headers: {
 				'Accept': 'application/json',
@@ -32,7 +32,7 @@ module.exports.mutations = {
 		return res.json();
 	},
 	updateEstablishment: async (parent,{id, establishment})=>{
-		const res = await fetch(`http://34.69.25.250:3001/establishments/${id}`,
+		const res = await fetch(`http://34.68.155.93:8004/establishments/${id}`,
 			{
 				headers: {
 				'Accept': 'application/json',
@@ -45,7 +45,7 @@ module.exports.mutations = {
 		return true;
 	},
 	addEstablishmentReview: async (parent,{id, message})=>{
-		const res = await fetch(`http://34.69.25.250:3001/establishments/${id}/messages`,
+		const res = await fetch(`http://34.68.155.93:8004/establishments/${id}/messages`,
 			{
 				headers: {
 				'Accept': 'application/json',

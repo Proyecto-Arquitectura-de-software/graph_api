@@ -2,14 +2,14 @@ const fetch = require("node-fetch");
 
 module.exports.queries = {
 	getFacturas: async (parent,args)=>{
-		const res = await fetch('http://34.69.25.250:8000/service/factura/factura/');
+		const res = await fetch('http://35.239.125.16:8001/service/factura/factura/');
 		return res.json();
 	}
 };
 
 module.exports.mutations = {
 	createFactura: async (parent,{factura})=>{
-		const res = await fetch("http://34.69.25.250:8000/service/factura/factura/",
+		const res = await fetch("http://35.239.125.16:8001/service/factura/factura/",
 			{
 				headers: {
 				'Accept': 'application/json',
@@ -22,7 +22,7 @@ module.exports.mutations = {
 		return res.json();
 	},
 	updateFactura: async (parent,{id,factura})=>{
-		const res = await fetch(`http://34.69.25.250:8000/service/factura/factura/${id}/`,
+		const res = await fetch(`http://35.239.125.16:8001/service/factura/factura/${id}/`,
 			{
 				headers: {
 				'Accept': 'application/json',
@@ -35,7 +35,7 @@ module.exports.mutations = {
 		return res.json();
 	},
 	setFactura: async (parent,{id,factura})=>{
-		const res = await fetch(`http://34.69.25.250:8000/service/factura/factura/${id}/`,
+		const res = await fetch(`http://35.239.125.16:8001/service/factura/factura/${id}/`,
 			{
 				headers: {
 				'Accept': 'application/json',
@@ -48,7 +48,7 @@ module.exports.mutations = {
 		return res.json();
 	},
 	deleteFactura: async (parent,{id})=>{
-		await fetch(`http://34.69.25.250:8000/service/factura/factura/${id}/`,
+		await fetch(`http://35.239.125.16:8001/service/factura/factura/${id}/`,
 			{
 				headers: {
 				'Accept': 'application/json',
